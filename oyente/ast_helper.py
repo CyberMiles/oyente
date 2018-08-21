@@ -1,6 +1,7 @@
-from utils import run_command
-from ast_walker import AstWalker
 import json
+
+from oyente.utils import run_command
+from oyente.ast_walker import AstWalker
 
 class AstHelper:
     def __init__(self, filename, input_type, remap, allow_paths=""):

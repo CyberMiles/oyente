@@ -3,10 +3,9 @@ import six
 import ast
 import json
 
-import global_params
-
-from utils import run_command
-from ast_helper import AstHelper
+from oyente import global_params
+from oyente.utils import run_command
+from oyente.ast_helper import AstHelper
 
 class Source:
     def __init__(self, filename):
