@@ -24,9 +24,9 @@ class AstHelper:
 
     def get_source_list(self, filename):
         if self.allow_paths:
-            cmd = "solc --combined-json ast %s %s --allow-paths %s" % (self.remap, filename, self.allow_paths)
+            cmd = "lityc --combined-json ast %s %s --allow-paths %s" % (self.remap, filename, self.allow_paths)
         else:
-            cmd = "solc --combined-json ast %s %s" % (self.remap, filename)
+            cmd = "lityc --combined-json ast %s %s" % (self.remap, filename)
         out = run_command(cmd)
         out = json.loads(out)
         return out["sources"]

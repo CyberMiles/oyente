@@ -51,16 +51,16 @@ def has_dependencies_installed():
         if compare_versions(evm_version, tested_evm_version) > 0:
             logging.warning("You are using evm version %s. The supported version is %s" % (evm_version, tested_evm_version))
 
-    if not cmd_exists("solc"):
-        logging.critical("solc is missing. Please install the solidity compiler and make sure solc is in the path.")
+    if not cmd_exists("lityc"):
+        logging.critical("lityc is missing. Please install the solidity compiler and make sure lityc is in the path.")
         return False
     else:
-        cmd = "solc --version"
+        cmd = "lityc --version"
         out = run_command(cmd).strip()
-        solc_version = re.findall(r"Version: (\d*.\d*.\d*)", out)[0]
-        tested_solc_version = '0.4.19'
-        if compare_versions(solc_version, tested_solc_version) > 0:
-            logging.warning("You are using solc version %s, The latest supported version is %s" % (solc_version, tested_solc_version))
+        lityc_version = re.findall(r"Version: (\d*.\d*.\d*)", out)[0]
+        tested_lityc_version = '0.4.19'
+        if compare_versions(lityc_version, tested_lityc_version) > 0:
+            logging.warning("You are using lityc version %s, The latest supported version is %s" % (lityc_version, tested_lityc_version))
 
     return True
 
