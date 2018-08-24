@@ -2272,8 +2272,6 @@ def detect_vulnerabilities():
         results["evm_code_coverage"] = str(round(evm_code_coverage, 1))
 
         if g_src_map:
-            detect_integer_underflow()
-            detect_integer_overflow()
             detect_parity_multisig_bug_2()
 
         log.debug("Checking for Callstack attack...")
@@ -2323,7 +2321,7 @@ def log_info():
     global assertion_failure
     global parity_multisig_bug_2
 
-    vulnerabilities = [integer_underflow, integer_overflow, callstack, money_concurrency, time_dependency, reentrancy]
+    vulnerabilities = [callstack, money_concurrency, time_dependency, reentrancy]
     if g_src_map:
         vulnerabilities.append(parity_multisig_bug_2)
         if global_params.CHECK_ASSERTIONS:
