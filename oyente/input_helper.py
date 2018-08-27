@@ -106,9 +106,9 @@ class InputHelper:
 
     def _compile_solidity(self):
         if not self.allow_paths:
-            cmd = "lityc --bin-runtime %s %s" % (self.remap, self.source)
+            cmd = "lityc --disable-oyente --bin-runtime %s %s" % (self.remap, self.source)
         else:
-            cmd = "lityc --bin-runtime %s %s --allow-paths %s" % (self.remap, self.source, self.allow_paths)
+            cmd = "lityc --disable-oyente --bin-runtime %s %s --allow-paths %s" % (self.remap, self.source, self.allow_paths)
         err = ''
         if self.compilation_err:
             out, err = run_command_with_err(cmd)
@@ -127,7 +127,7 @@ class InputHelper:
         FNULL = open(os.devnull, 'w')
         cmd = "cat %s" % self.source
         p1 = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=FNULL)
-        cmd = "lityc --allow-paths %s --standard-json" % self.allow_paths
+        cmd = "lityc --disable-oyente --allow-paths %s --standard-json" % self.allow_paths
         p2 = subprocess.Popen(shlex.split(cmd), stdin=p1.stdout, stdout=subprocess.PIPE, stderr=FNULL)
         p1.stdout.close()
         out = p2.communicate()[0]
@@ -177,11 +177,11 @@ class InputHelper:
             option += " --libraries %s:%s" % (lib, lib_address)
         FNULL = open(os.devnull, 'w')
         if not self.allow_paths:
-            cmd = "lityc --bin-runtime %s %s" % (self.remap, self.source)
+            cmd = "lityc --disable-oyente --bin-runtime %s %s" % (self.remap, self.source)
         else:
-            cmd = "lityc --bin-runtime %s %s --allow-paths %s" % (self.remap, self.source, self.allow_paths)
+            cmd = "lityc --disable-oyente --bin-runtime %s %s --allow-paths %s" % (self.remap, self.source, self.allow_paths)
         p1 = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=FNULL)
-        cmd = "lityc --link%s" %option
+        cmd = "lityc --disable-oyente --link%s" %option
         p2 = subprocess.Popen(shlex.split(cmd), stdin=p1.stdout, stdout=subprocess.PIPE, stderr=FNULL)
         p1.stdout.close()
         out = p2.communicate()[0].decode('utf-8', 'strict')
